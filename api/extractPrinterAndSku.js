@@ -1,6 +1,9 @@
-// Minor update to trigger Vercel redeploy
 export default function handler(req, res) {
-  const { text } = req.body;
+  const { text } = req.body || {}; // ← safely handle if body is undefined
+
+  if (!text) {
+    return res.status(400).json({ error: "Missing text in request body" });
+  }
 
   const modelMatch = text.match(/Printer Model:\s*(.*?)\s*SKUs:/i);
   const skuMatch = text.match(/SKUs:\s*(.*)/i);
