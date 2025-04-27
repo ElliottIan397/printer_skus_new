@@ -1,3 +1,4 @@
+// Minor update to trigger Vercel redeploy
 export default function handler(req, res) {
   const { text } = req.body;
 
